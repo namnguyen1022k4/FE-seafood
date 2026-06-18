@@ -33,22 +33,35 @@ export default function CartPage() {
   }
 
   if (items.length === 0) {
-    return <p className="text-center text-gray-400 py-16 text-lg">Your cart is empty.</p>
+    return (
+      <div className="text-center py-24">
+        <p className="text-5xl mb-4">🛒</p>
+        <p className="text-slate-400 text-lg">Giỏ hàng trống.</p>
+      </div>
+    )
   }
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Cart</h1>
-      {items.map((item) => (
-        <CartItem key={item.product_id} item={item} />
-      ))}
-      <div className="flex justify-between items-center mt-6 py-4 border-t">
-        <p className="text-lg font-bold">Total: ${total.toFixed(2)}</p>
+      <h1 className="text-2xl font-extrabold text-sky-900 mb-6 flex items-center gap-2">
+        <span className="w-1 h-6 bg-sky-500 rounded-full block" />
+        Giỏ hàng
+      </h1>
+      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+        {items.map((item) => (
+          <CartItem key={item.product_id} item={item} />
+        ))}
+      </div>
+      <div className="flex justify-between items-center mt-4 p-5 bg-white rounded-2xl shadow-sm">
+        <div>
+          <p className="text-sm text-slate-500">Tổng cộng</p>
+          <p className="text-2xl font-extrabold text-sky-900">${total.toFixed(2)}</p>
+        </div>
         <button
           onClick={handleCheckout}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+          className="bg-sky-500 hover:bg-sky-600 text-white font-bold px-8 py-3 rounded-xl transition-colors"
         >
-          Checkout
+          Đặt hàng →
         </button>
       </div>
     </div>

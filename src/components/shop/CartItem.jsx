@@ -19,36 +19,34 @@ export default function CartItem({ item }) {
   }
 
   return (
-    <div className="flex items-center gap-4 py-4 border-b">
+    <div className="flex items-center gap-4 px-5 py-4 border-b border-sky-50 last:border-b-0">
       <img
         src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/80x80'}
         alt={product.name}
-        className="w-20 h-20 object-cover rounded"
+        className="w-16 h-16 object-cover rounded-xl"
       />
-      <div className="flex-1">
-        <p className="font-semibold">{product.name}</p>
-        <p className="text-blue-600">${product.price.toFixed(2)}</p>
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-slate-800 truncate">{product.name}</p>
+        <p className="text-sky-500 font-bold text-sm">${product.price.toFixed(2)}</p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <button
           onClick={() => handleQtyChange(item.quantity - 1)}
-          className="w-7 h-7 border rounded hover:bg-gray-100"
-        >-</button>
-        <span className="w-8 text-center">{item.quantity}</span>
+          className="w-8 h-8 border-2 border-sky-200 rounded-lg text-sky-700 hover:bg-sky-50 font-bold transition-colors flex items-center justify-center"
+        >−</button>
+        <span className="w-8 text-center font-semibold text-slate-700">{item.quantity}</span>
         <button
           onClick={() => handleQtyChange(item.quantity + 1)}
-          className="w-7 h-7 border rounded hover:bg-gray-100"
+          className="w-8 h-8 border-2 border-sky-200 rounded-lg text-sky-700 hover:bg-sky-50 font-bold transition-colors flex items-center justify-center"
         >+</button>
       </div>
-      <p className="w-20 text-right font-semibold">
+      <p className="w-20 text-right font-bold text-sky-900">
         ${(product.price * item.quantity).toFixed(2)}
       </p>
       <button
         onClick={() => handleQtyChange(0)}
-        className="text-red-500 hover:text-red-700 text-sm"
-      >
-        Remove
-      </button>
+        className="text-slate-300 hover:text-red-400 transition-colors text-lg leading-none"
+      >✕</button>
     </div>
   )
 }
