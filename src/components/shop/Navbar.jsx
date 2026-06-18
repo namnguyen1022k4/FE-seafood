@@ -18,33 +18,35 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-10">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="text-xl font-bold text-blue-600">Shop</Link>
-        <div className="flex items-center gap-4">
+    <nav className="bg-sky-900 shadow-lg sticky top-0 z-10">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <Link to="/" className="text-xl font-extrabold text-cyan-300 tracking-tight flex items-center gap-2">
+          🦞 SeaFresh
+        </Link>
+        <div className="flex items-center gap-6">
           {user ? (
             <>
-              <span className="text-sm text-gray-600">Hi, {user.username || user.email}</span>
-              <Link to="/orders" className="text-sm hover:text-blue-600">Orders</Link>
+              <span className="text-sm text-sky-200">Hi, {user.username || user.email}</span>
+              <Link to="/orders" className="text-sm text-sky-200 hover:text-white transition-colors">Orders</Link>
               {user.role === 'ADMIN' && (
-                <Link to="/admin" className="text-sm font-medium hover:text-blue-600">Admin</Link>
+                <Link to="/admin" className="text-sm font-medium text-sky-200 hover:text-white transition-colors">Admin</Link>
               )}
-              <Link to="/cart" className="relative text-sm hover:text-blue-600">
-                Cart
+              <Link to="/cart" className="relative inline-flex items-center gap-1.5 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+                🛒 Cart
                 {totalItems > 0 && (
-                  <span className="absolute -top-2 -right-3 bg-blue-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="bg-orange-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 leading-none">
                     {totalItems}
                   </span>
                 )}
               </Link>
-              <button onClick={handleLogout} className="text-sm text-red-500 hover:text-red-700">
+              <button onClick={handleLogout} className="text-sm text-sky-300 hover:text-red-400 transition-colors">
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-sm hover:text-blue-600">Login</Link>
-              <Link to="/register" className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+              <Link to="/login" className="text-sm text-sky-200 hover:text-white transition-colors">Login</Link>
+              <Link to="/register" className="text-sm bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
                 Register
               </Link>
             </>
