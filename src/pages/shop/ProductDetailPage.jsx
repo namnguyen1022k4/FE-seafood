@@ -38,46 +38,46 @@ export default function ProductDetailPage() {
     }
   }
 
-  if (loading) return <p className="text-center py-16 text-gray-400">Loading...</p>
-  if (!product) return <p className="text-center py-16 text-gray-400">Product not found.</p>
+  if (loading) return <p className="text-center py-16 text-slate-400">Đang tải...</p>
+  if (!product) return <p className="text-center py-16 text-slate-400">Không tìm thấy sản phẩm.</p>
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6">
-      <div className="flex flex-col md:flex-row gap-6">
+    <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+      <div className="flex flex-col md:flex-row gap-8">
         <img
           src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/400x300'}
           alt={product.name}
-          className="w-full md:w-72 h-64 object-cover rounded"
+          className="w-full md:w-80 h-64 object-cover rounded-xl"
         />
         <div className="flex-1">
           {category && (
-            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
+            <span className="inline-block text-xs bg-sky-100 text-sky-700 font-semibold px-3 py-1 rounded-full mb-3">
               {category.name}
             </span>
           )}
-          <h1 className="text-2xl font-bold mt-2">{product.name}</h1>
-          <p className="text-3xl font-bold text-blue-600 mt-2">${product.price.toFixed(2)}</p>
-          <p className="text-gray-600 mt-3">{product.description}</p>
-          <p className="text-sm text-gray-400 mt-2">
-            {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+          <h1 className="text-2xl font-extrabold text-sky-900 mb-2">{product.name}</h1>
+          <p className="text-3xl font-extrabold text-sky-500 mb-3">${product.price.toFixed(2)}</p>
+          <p className="text-slate-600 leading-relaxed mb-3">{product.description}</p>
+          <p className={`text-sm font-medium mb-4 ${product.stock > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
+            {product.stock > 0 ? `✓ Còn ${product.stock} sản phẩm` : '✗ Hết hàng'}
           </p>
-          <div className="flex items-center gap-3 mt-4">
-            <label className="text-sm font-medium">Qty:</label>
+          <div className="flex items-center gap-3 mb-5">
+            <label className="text-sm font-semibold text-slate-700">Số lượng:</label>
             <input
               type="number"
               min="1"
               max={product.stock}
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              className="w-16 border rounded px-2 py-1 text-center"
+              className="w-16 border-2 border-sky-200 rounded-lg px-2 py-1.5 text-center focus:outline-none focus:border-sky-500"
             />
           </div>
           <button
             onClick={handleAddToCart}
             disabled={product.stock === 0}
-            className="mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-40"
+            className="bg-sky-500 hover:bg-sky-600 text-white font-bold px-8 py-3 rounded-xl transition-colors disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed"
           >
-            Add to Cart
+            🛒 Add to Cart
           </button>
         </div>
       </div>
