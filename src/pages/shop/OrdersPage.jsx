@@ -12,13 +12,19 @@ export default function OrdersPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <p className="text-center py-16 text-gray-400">Loading...</p>
+  if (loading) return <p className="text-center py-16 text-slate-400">Đang tải...</p>
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">My Orders</h1>
+      <h1 className="text-2xl font-extrabold text-sky-900 mb-6 flex items-center gap-2">
+        <span className="w-1 h-6 bg-sky-500 rounded-full block" />
+        Đơn hàng của tôi
+      </h1>
       {orders.length === 0 ? (
-        <p className="text-center text-gray-400 py-16">No orders yet.</p>
+        <div className="text-center py-24">
+          <p className="text-5xl mb-4">📦</p>
+          <p className="text-slate-400 text-lg">Chưa có đơn hàng nào.</p>
+        </div>
       ) : (
         <div className="space-y-3">
           {orders.map((o) => <OrderCard key={o.id} order={o} />)}

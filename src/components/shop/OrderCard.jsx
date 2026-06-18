@@ -1,19 +1,26 @@
 const STATUS_COLORS = {
-  PENDING: 'bg-yellow-100 text-yellow-700',
-  SHIPPING: 'bg-blue-100 text-blue-700',
-  DELIVERED: 'bg-green-100 text-green-700',
-  CANCELLED: 'bg-red-100 text-red-700',
+  PENDING: 'bg-amber-100 text-amber-700',
+  SHIPPING: 'bg-sky-100 text-sky-700',
+  DELIVERED: 'bg-emerald-100 text-emerald-700',
+  CANCELLED: 'bg-red-100 text-red-600',
+}
+
+const STATUS_LABELS = {
+  PENDING: '⏳ Chờ xử lý',
+  SHIPPING: '🚚 Đang giao',
+  DELIVERED: '✅ Đã giao',
+  CANCELLED: '✕ Đã hủy',
 }
 
 export default function OrderCard({ order }) {
   return (
-    <div className="bg-white rounded-lg shadow p-4 flex justify-between items-center">
+    <div className="bg-white rounded-2xl shadow-sm p-5 flex justify-between items-center hover:shadow-md transition-shadow">
       <div>
-        <p className="font-semibold text-gray-700">Order #{order.id}</p>
-        <p className="text-2xl font-bold text-blue-600 mt-1">${order.total_price.toFixed(2)}</p>
+        <p className="text-sm text-slate-400 font-medium">Order #{order.id}</p>
+        <p className="text-2xl font-extrabold text-sky-900 mt-0.5">${order.total_price.toFixed(2)}</p>
       </div>
-      <span className={`text-xs px-2 py-1 rounded font-medium ${STATUS_COLORS[order.status] || 'bg-gray-100 text-gray-600'}`}>
-        {order.status}
+      <span className={`text-xs px-3 py-1.5 rounded-full font-semibold ${STATUS_COLORS[order.status] || 'bg-slate-100 text-slate-600'}`}>
+        {STATUS_LABELS[order.status] || order.status}
       </span>
     </div>
   )
