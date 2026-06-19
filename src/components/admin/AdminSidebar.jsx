@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import useAuthStore from '../../stores/authStore'
 
@@ -40,7 +40,13 @@ export default function AdminSidebar() {
           </NavLink>
         ))}
       </nav>
-      <div className="p-4 border-t">
+      <div className="p-4 border-t space-y-2">
+        <Link
+          to="/"
+          className="block text-sm text-sky-600 hover:text-sky-800 font-medium"
+        >
+          ← Về shop
+        </Link>
         <button
           onClick={handleLogout}
           className="w-full text-sm text-red-500 hover:text-red-700"

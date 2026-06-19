@@ -1,0 +1,74 @@
+<h2>Product Card nên trông như thế nào?</h2>
+<p class="subtitle">Component xuất hiện nhiều nhất — chọn style phù hợp với Ocean Fresh</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="classic" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #f0f9ff; display:flex; justify-content:center;">
+      <div style="background:#fff; border-radius:12px; overflow:hidden; width:140px; box-shadow: 0 4px 12px rgba(12,74,110,0.15);">
+        <div style="background:linear-gradient(135deg,#0ea5e9,#67e8f9); height:80px; display:flex; align-items:center; justify-content:center;">
+          <div style="font-size:28px;">🦐</div>
+        </div>
+        <div style="padding:10px;">
+          <div style="background:#0f172a; height:8px; border-radius:3px; width:80%; margin-bottom:6px;"></div>
+          <div style="background:#0ea5e9; height:10px; border-radius:3px; width:50%; margin-bottom:8px; font-weight:bold;"></div>
+          <div style="background:#0c4a6e; height:28px; border-radius:6px; width:100%; display:flex; align-items:center; justify-content:center;">
+            <div style="background:#fff; height:7px; width:60px; border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Classic Card</h3>
+      <p>Ảnh đầy card, tên + giá + nút Add to Cart rõ ràng. Bo góc mềm, shadow nhẹ. Quen thuộc, dễ dùng.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="overlay" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #f0f9ff; display:flex; justify-content:center;">
+      <div style="background:#fff; border-radius:12px; overflow:hidden; width:140px; box-shadow: 0 4px 12px rgba(12,74,110,0.15); position:relative;">
+        <div style="background:linear-gradient(135deg,#0c4a6e,#0ea5e9); height:110px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="font-size:32px;">🦞</div>
+          <!-- Price badge -->
+          <div style="position:absolute; top:8px; right:8px; background:#f97316; color:#fff; border-radius:6px; padding:2px 7px; font-size:10px; font-weight:bold;">$12.99</div>
+        </div>
+        <!-- Overlay bottom -->
+        <div style="background:linear-gradient(to top, #0c4a6e, transparent); position:absolute; bottom:36px; left:0; right:0; height:40px;"></div>
+        <div style="padding:8px; background:#0c4a6e;">
+          <div style="background:#fff; height:7px; border-radius:3px; width:75%; margin-bottom:6px;"></div>
+          <div style="background:#67e8f9; height:24px; border-radius:6px; width:100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Dark Overlay Card</h3>
+      <p>Ảnh chiếm toàn card, giá nổi badge góc trên, tên & nút nằm dưới nền dark navy. Dramatic, sang trọng hơn.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="horizontal" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 16px; background: #f0f9ff; display:flex; flex-direction:column; gap:8px;">
+      <div style="background:#fff; border-radius:10px; overflow:hidden; box-shadow: 0 2px 8px rgba(12,74,110,0.12); display:flex; height:64px;">
+        <div style="background:linear-gradient(135deg,#0ea5e9,#67e8f9); width:64px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:22px;">🐟</div>
+        <div style="padding:8px; flex:1;">
+          <div style="background:#0f172a; height:7px; border-radius:3px; width:70%; margin-bottom:5px;"></div>
+          <div style="background:#0ea5e9; height:8px; border-radius:3px; width:40%; margin-bottom:7px;"></div>
+          <div style="background:#0c4a6e; height:18px; border-radius:4px; width:55%;"></div>
+        </div>
+      </div>
+      <div style="background:#fff; border-radius:10px; overflow:hidden; box-shadow: 0 2px 8px rgba(12,74,110,0.12); display:flex; height:64px;">
+        <div style="background:linear-gradient(135deg,#0c4a6e,#0ea5e9); width:64px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:22px;">🦀</div>
+        <div style="padding:8px; flex:1;">
+          <div style="background:#0f172a; height:7px; border-radius:3px; width:60%; margin-bottom:5px;"></div>
+          <div style="background:#0ea5e9; height:8px; border-radius:3px; width:35%; margin-bottom:7px;"></div>
+          <div style="background:#0c4a6e; height:18px; border-radius:4px; width:55%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Horizontal List Card</h3>
+      <p>Ảnh nhỏ bên trái, thông tin bên phải. Hiển thị được nhiều sản phẩm hơn, tốt cho mobile, kiểu list view.</p>
+    </div>
+  </div>
+
+</div>

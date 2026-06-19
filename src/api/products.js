@@ -7,5 +7,6 @@ export const updateProduct = (id, data) => api.put(`/products/${id}`, data)
 export const deleteProduct = (id) => api.delete(`/products/${id}`)
 export const uploadImage = (formData) =>
   api.post('/products/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    _skipAuthRedirect: true,
   })
+export const getBestsellers = (limit = 8) => api.get('/products/bestsellers', { params: { limit } })

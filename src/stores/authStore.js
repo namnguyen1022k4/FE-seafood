@@ -5,6 +5,9 @@ const useAuthStore = create((set) => ({
   user: null,
 
   login(userData) {
+    if (userData.access_token) {
+      document.cookie = `access_token=${userData.access_token}; path=/; max-age=86400; SameSite=Lax`
+    }
     set({ user: userData })
   },
 
@@ -12,6 +15,7 @@ const useAuthStore = create((set) => ({
     try {
       await apiLogout()
     } finally {
+      document.cookie = 'access_token=; path=/; max-age=0'
       set({ user: null })
     }
   },
@@ -21,6 +25,7 @@ const useAuthStore = create((set) => ({
       const res = await getMe()
       set({ user: res.data })
     } catch {
+      document.cookie = 'access_token=; path=/; max-age=0'
       set({ user: null })
     }
   },

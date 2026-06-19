@@ -34,7 +34,11 @@ export default function Navbar() {
               <Link to="/cart" className="relative inline-flex items-center gap-1.5 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
                 🛒 Cart
                 {totalItems > 0 && (
-                  <span className="bg-orange-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 leading-none">
+                  <span
+                    key={totalItems}
+                    className="bg-orange-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 leading-none animate-bounce"
+                    style={{ animationDuration: '0.4s', animationIterationCount: 3 }}
+                  >
                     {totalItems}
                   </span>
                 )}

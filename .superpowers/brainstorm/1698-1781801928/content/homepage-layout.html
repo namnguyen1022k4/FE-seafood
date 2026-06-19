@@ -1,0 +1,101 @@
+<h2>Homepage nên có layout nào?</h2>
+<p class="subtitle">Chọn cấu trúc tổng thể cho trang chủ</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="hero" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px; background:#f8fafc;">
+      <!-- Navbar -->
+      <div style="background:#0c4a6e;height:36px;border-radius:4px 4px 0 0;display:flex;align-items:center;padding:0 10px;gap:8px;">
+        <div style="background:#67e8f9;width:50px;height:12px;border-radius:3px;font-size:0"></div>
+        <div style="flex:1"></div>
+        <div style="background:#ffffff44;width:30px;height:10px;border-radius:3px"></div>
+        <div style="background:#0ea5e9;width:40px;height:18px;border-radius:3px"></div>
+      </div>
+      <!-- Hero banner -->
+      <div style="background:linear-gradient(135deg,#0c4a6e,#0ea5e9);height:60px;display:flex;align-items:center;padding:0 10px;">
+        <div>
+          <div style="background:#fff;width:80px;height:8px;border-radius:3px;margin-bottom:5px"></div>
+          <div style="background:#ffffff88;width:55px;height:6px;border-radius:3px;margin-bottom:8px"></div>
+          <div style="background:#0ea5e9;width:50px;height:14px;border-radius:3px;border:1.5px solid #67e8f9"></div>
+        </div>
+      </div>
+      <!-- Product grid -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:6px 0;">
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Hero + Products</h3>
+      <p>Banner lớn ở đầu trang với tagline & CTA, bên dưới là grid sản phẩm. Cảm giác professional như Shopee/Lazada.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="filter-first" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px; background:#f8fafc;">
+      <!-- Navbar -->
+      <div style="background:#0c4a6e;height:36px;border-radius:4px 4px 0 0;display:flex;align-items:center;padding:0 10px;gap:8px;">
+        <div style="background:#67e8f9;width:50px;height:12px;border-radius:3px"></div>
+        <div style="flex:1"></div>
+        <div style="background:#ffffff44;width:30px;height:10px;border-radius:3px"></div>
+        <div style="background:#0ea5e9;width:40px;height:18px;border-radius:3px"></div>
+      </div>
+      <!-- Search bar full width -->
+      <div style="background:#e0f2fe;height:28px;margin:6px 0;border-radius:4px;display:flex;align-items:center;padding:0 8px;">
+        <div style="background:#94a3b8;width:12px;height:12px;border-radius:50%;margin-right:6px"></div>
+        <div style="background:#cbd5e1;width:80px;height:8px;border-radius:3px"></div>
+      </div>
+      <!-- Sidebar + Grid -->
+      <div style="display:flex;gap:4px;">
+        <div style="width:36px;background:#e0f2fe;border-radius:3px;padding:4px;">
+          <div style="background:#94a3b8;height:6px;border-radius:2px;margin-bottom:4px"></div>
+          <div style="background:#cbd5e1;height:5px;border-radius:2px;margin-bottom:3px"></div>
+          <div style="background:#cbd5e1;height:5px;border-radius:2px;margin-bottom:3px"></div>
+          <div style="background:#cbd5e1;height:5px;border-radius:2px"></div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:3px;">
+          <div style="background:#e0f2fe;height:32px;border-radius:3px"></div>
+          <div style="background:#e0f2fe;height:32px;border-radius:3px"></div>
+          <div style="background:#e0f2fe;height:32px;border-radius:3px"></div>
+          <div style="background:#e0f2fe;height:32px;border-radius:3px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Search-First</h3>
+      <p>Thanh tìm kiếm nổi bật ngay đầu, sidebar filter bên trái, grid sản phẩm bên phải. Đơn giản, tập trung vào browsing.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="categories" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:12px; background:#f8fafc;">
+      <!-- Navbar -->
+      <div style="background:#0c4a6e;height:36px;border-radius:4px 4px 0 0;display:flex;align-items:center;padding:0 10px;gap:8px;">
+        <div style="background:#67e8f9;width:50px;height:12px;border-radius:3px"></div>
+        <div style="flex:1"></div>
+        <div style="background:#ffffff44;width:30px;height:10px;border-radius:3px"></div>
+        <div style="background:#0ea5e9;width:40px;height:18px;border-radius:3px"></div>
+      </div>
+      <!-- Category pills -->
+      <div style="display:flex;gap:4px;padding:6px 0;overflow:hidden;">
+        <div style="background:#0ea5e9;color:#fff;height:16px;width:36px;border-radius:8px;font-size:0"></div>
+        <div style="background:#e0f2fe;height:16px;width:30px;border-radius:8px;font-size:0"></div>
+        <div style="background:#e0f2fe;height:16px;width:34px;border-radius:8px;font-size:0"></div>
+        <div style="background:#e0f2fe;height:16px;width:28px;border-radius:8px;font-size:0"></div>
+      </div>
+      <!-- Product grid 3 col -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+        <div style="background:#e0f2fe;height:38px;border-radius:3px"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Category Tabs + Grid</h3>
+      <p>Dải category pills/tabs ngang để lọc nhanh, bên dưới là product grid full-width. Gọn gàng, mobile-friendly.</p>
+    </div>
+  </div>
+
+</div>

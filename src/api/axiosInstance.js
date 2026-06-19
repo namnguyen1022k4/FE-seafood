@@ -1,14 +1,19 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'https://seafood-bxeb.onrender.com',
   withCredentials: true,
 })
+
+api.interceptors.request.use((config) => config)
 
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401 && !error.config.url.includes('/auth/me')) {
+    const url = error.config?.url ?? ''
+    const isAuthCheck = url.includes('/auth/me')
+    const skipRedirect = error.config?._skipAuthRedirect === true
+    if (error.response?.status === 401 && !isAuthCheck && !skipRedirect) {
       window.location.href = '/login'
     }
     return Promise.reject(error)

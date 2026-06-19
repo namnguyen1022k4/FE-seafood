@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Fresh — Full Design Mockup</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f9ff; color: #0f172a; }
+
+  /* ===== SECTION LABELS ===== */
+  .section-label {
+    background: #1e293b; color: #67e8f9; font-size: 11px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; padding: 6px 16px;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar {
+    background: #0c4a6e;
+    padding: 0 32px;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 12px rgba(12,74,110,.4);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .navbar-brand {
+    font-size: 20px; font-weight: 800; color: #67e8f9;
+    letter-spacing: -.02em; display: flex; align-items: center; gap: 8px;
+  }
+  .navbar-brand span { font-size: 22px; }
+  .navbar-links { display: flex; align-items: center; gap: 24px; }
+  .navbar-links a {
+    color: #bae6fd; font-size: 14px; text-decoration: none;
+    transition: color .15s;
+  }
+  .navbar-links a:hover { color: #fff; }
+  .cart-btn {
+    background: #0ea5e9; color: #fff; border: none; border-radius: 8px;
+    padding: 7px 16px; font-size: 14px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: background .15s;
+  }
+  .cart-badge {
+    background: #f97316; color: #fff; border-radius: 9999px;
+    font-size: 11px; font-weight: 700; padding: 1px 6px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0ea5e9 100%);
+    padding: 64px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 260px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; right: -60px; top: -60px;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: rgba(103,232,249,.08);
+  }
+  .hero::after {
+    content: '';
+    position: absolute; right: 80px; bottom: -80px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(14,165,233,.12);
+  }
+  .hero-content { max-width: 480px; z-index: 1; }
+  .hero-badge {
+    display: inline-block; background: rgba(103,232,249,.2);
+    color: #67e8f9; border: 1px solid rgba(103,232,249,.3);
+    border-radius: 9999px; padding: 4px 14px; font-size: 12px;
+    font-weight: 600; margin-bottom: 16px; letter-spacing: .04em;
+  }
+  .hero h1 {
+    font-size: 36px; font-weight: 800; color: #fff;
+    line-height: 1.15; margin-bottom: 12px;
+  }
+  .hero h1 em { color: #67e8f9; font-style: normal; }
+  .hero p { color: #bae6fd; font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+  .hero-actions { display: flex; gap: 12px; align-items: center; }
+  .btn-primary {
+    background: #0ea5e9; color: #fff; border: none; border-radius: 10px;
+    padding: 12px 28px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  .btn-outline {
+    background: transparent; color: #67e8f9;
+    border: 1.5px solid rgba(103,232,249,.5);
+    border-radius: 10px; padding: 11px 24px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .hero-emoji {
+    font-size: 96px; z-index: 1; filter: drop-shadow(0 8px 24px rgba(0,0,0,.3));
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  /* ===== SEARCH + FILTER BAR ===== */
+  .search-bar-section {
+    background: #fff; border-bottom: 1px solid #e0f2fe;
+    padding: 16px 32px; display: flex; gap: 12px; align-items: center;
+  }
+  .search-input {
+    flex: 1; border: 1.5px solid #bae6fd; border-radius: 10px;
+    padding: 10px 16px; font-size: 14px; outline: none;
+    transition: border-color .15s; color: #0f172a;
+  }
+  .search-input:focus { border-color: #0ea5e9; }
+  .category-pill {
+    background: #e0f2fe; color: #0369a1; border: none; border-radius: 9999px;
+    padding: 7px 16px; font-size: 13px; font-weight: 500; cursor: pointer;
+    white-space: nowrap;
+  }
+  .category-pill.active { background: #0c4a6e; color: #67e8f9; }
+
+  /* ===== PRODUCTS SECTION ===== */
+  .products-section { padding: 32px; }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 20px; font-weight: 700; color: #0c4a6e;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::before {
+    content: ''; display: block; width: 4px; height: 20px;
+    background: #0ea5e9; border-radius: 2px;
+  }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  }
+
+  /* ===== PRODUCT CARD ===== */
+  .product-card {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(12,74,110,.1);
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(12,74,110,.18);
+  }
+  .card-img {
+    height: 160px; display: flex; align-items: center; justify-content: center;
+    font-size: 52px; position: relative;
+    overflow: hidden;
+  }
+  .card-img-1 { background: linear-gradient(135deg, #e0f2fe, #bae6fd); }
+  .card-img-2 { background: linear-gradient(135deg, #cffafe, #a5f3fc); }
+  .card-img-3 { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+  .card-img-4 { background: linear-gradient(135deg, #f0fdf4, #bbf7d0); }
+  .stock-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: rgba(255,255,255,.9); color: #059669;
+    border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 600;
+  }
+  .card-body { padding: 14px; }
+  .card-name {
+    font-size: 14px; font-weight: 600; color: #0f172a;
+    margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-category { font-size: 12px; color: #64748b; margin-bottom: 10px; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .card-price { font-size: 18px; font-weight: 800; color: #0c4a6e; }
+  .card-price span { font-size: 12px; font-weight: 400; color: #64748b; }
+  .add-btn {
+    background: #0ea5e9; color: #fff; border: none; border-radius: 8px;
+    padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: background .15s;
+  }
+  .add-btn:hover { background: #0284c7; }
+
+  /* ===== LOGIN PAGE ===== */
+  .login-page {
+    min-height: 400px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 40px;
+  }
+  .login-card {
+    background: #fff; border-radius: 20px; padding: 40px;
+    box-shadow: 0 8px 32px rgba(12,74,110,.12);
+    width: 100%; max-width: 380px;
+  }
+  .login-card h2 {
+    font-size: 24px; font-weight: 800; color: #0c4a6e;
+    margin-bottom: 4px;
+  }
+  .login-card p { color: #64748b; font-size: 14px; margin-bottom: 28px; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; display:block; }
+  .form-input {
+    width: 100%; border: 1.5px solid #e2e8f0; border-radius: 10px;
+    padding: 11px 14px; font-size: 14px; outline: none;
+  }
+  .form-input:focus { border-color: #0ea5e9; }
+  .login-btn {
+    width: 100%; background: #0c4a6e; color: #fff; border: none;
+    border-radius: 10px; padding: 13px; font-size: 15px; font-weight: 700;
+    cursor: pointer; margin-top: 8px;
+  }
+  .login-divider { text-align:center; color:#94a3b8; font-size:13px; margin:16px 0; }
+  .register-link { text-align:center; font-size:14px; color:#64748b; }
+  .register-link a { color:#0ea5e9; font-weight:600; text-decoration:none; }
+
+  /* ===== PALETTE SWATCH ===== */
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 32px 20px; background: #fff; border-bottom: 1px solid #e2e8f0; }
+  .swatch { border-radius: 8px; padding: 10px 16px; font-size: 12px; font-weight: 600; }
+
+  /* ===== PAGE SEPARATOR ===== */
+  .page-sep { height: 24px; background: #1e293b; display:flex; align-items:center; padding: 0 16px; gap:8px; }
+  .page-sep span { color: #94a3b8; font-size: 11px; }
+  .dot { width:8px; height:8px; border-radius:50%; }
+</style>
+</head>
+<body>
+
+<!-- COLOR PALETTE -->
+<div class="section-label">🎨 Color System — Ocean Fresh</div>
+<div class="palette">
+  <div class="swatch" style="background:#0c4a6e;color:#67e8f9;">Navy<br>#0c4a6e</div>
+  <div class="swatch" style="background:#0369a1;color:#bae6fd;">Blue<br>#0369a1</div>
+  <div class="swatch" style="background:#0ea5e9;color:#fff;">Primary<br>#0ea5e9</div>
+  <div class="swatch" style="background:#67e8f9;color:#0c4a6e;">Cyan<br>#67e8f9</div>
+  <div class="swatch" style="background:#bae6fd;color:#0c4a6e;">Light<br>#bae6fd</div>
+  <div class="swatch" style="background:#f0f9ff;color:#0c4a6e;border:1px solid #e0f2fe;">BG<br>#f0f9ff</div>
+  <div class="swatch" style="background:#f97316;color:#fff;">Accent<br>#f97316</div>
+  <div class="swatch" style="background:#0f172a;color:#fff;">Text<br>#0f172a</div>
+</div>
+
+<!-- PAGE 1: HOMEPAGE -->
+<div class="section-label">📄 Page 1 — Homepage</div>
+<div class="navbar">
+  <div class="navbar-brand"><span>🦞</span> SeaFresh</div>
+  <div class="navbar-links">
+    <a href="#">Home</a>
+    <a href="#">Orders</a>
+    <a href="#">Hi, Bael</a>
+    <button class="cart-btn">🛒 Cart <span class="cart-badge">3</span></button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌊 Fresh from the Ocean</div>
+    <h1>Hải sản tươi sống<br>giao tận <em>cửa nhà</em></h1>
+    <p>Tôm, cua, cá, mực — chọn lọc mỗi ngày từ ngư dân. Giao hàng nhanh, đảm bảo tươi ngon.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">🛍️ Mua ngay</button>
+      <button class="btn-outline">Xem sản phẩm</button>
+    </div>
+  </div>
+  <div class="hero-emoji">🦐</div>
+</div>
+
+<div class="search-bar-section">
+  <input class="search-input" type="text" placeholder="🔍  Tìm kiếm hải sản...">
+  <button class="category-pill active">Tất cả</button>
+  <button class="category-pill">🦐 Tôm</button>
+  <button class="category-pill">🦀 Cua</button>
+  <button class="category-pill">🐟 Cá</button>
+  <button class="category-pill">🦑 Mực</button>
+</div>
+
+<div class="products-section">
+  <div class="section-header">
+    <div class="section-title">Sản phẩm nổi bật</div>
+    <span style="font-size:13px;color:#0ea5e9;cursor:pointer;">Xem tất cả →</span>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="card-img card-img-1"><div class="stock-badge">✓ Còn hàng</div>🦐</div>
+      <div class="card-body">
+        <div class="card-name">Tôm sú tươi sống</div>
+        <div class="card-category">🏷️ Tôm</div>
+        <div class="card-footer">
+          <div class="card-price">$12.99 <span>/ kg</span></div>
+          <button class="add-btn">+ Thêm</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-img card-img-2"><div class="stock-badge">✓ Còn hàng</div>🦀</div>
+      <div class="card-body">
+        <div class="card-name">Cua biển cỡ lớn</div>
+        <div class="card-category">🏷️ Cua</div>
+        <div class="card-footer">
+          <div class="card-price">$24.50 <span>/ kg</span></div>
+          <button class="add-btn">+ Thêm</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-img card-img-3"><div class="stock-badge">✓ Còn hàng</div>🐟</div>
+      <div class="card-body">
+        <div class="card-name">Cá hồi Na Uy</div>
+        <div class="card-category">🏷️ Cá</div>
+        <div class="card-footer">
+          <div class="card-price">$18.00 <span>/ kg</span></div>
+          <button class="add-btn">+ Thêm</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="card-img card-img-4"><div class="stock-badge" style="color:#dc2626;">Hết hàng</div>🦑</div>
+      <div class="card-body">
+        <div class="card-name">Mực ống tươi</div>
+        <div class="card-category">🏷️ Mực</div>
+        <div class="card-footer">
+          <div class="card-price">$9.80 <span>/ kg</span></div>
+          <button class="add-btn" style="background:#cbd5e1;cursor:not-allowed;">Hết</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: LOGIN -->
+<div class="page-sep">
+  <div class="dot" style="background:#0ea5e9"></div>
+  <div class="dot" style="background:#67e8f9"></div>
+  <div class="dot" style="background:#bae6fd"></div>
+</div>
+<div class="section-label">📄 Page 2 — Login</div>
+<div class="navbar">
+  <div class="navbar-brand"><span>🦞</span> SeaFresh</div>
+  <div class="navbar-links">
+    <a href="#">Login</a>
+    <button class="cart-btn" style="background:#0369a1;">Register</button>
+  </div>
+</div>
+<div class="login-page">
+  <div class="login-card">
+    <h2>Chào mừng trở lại 👋</h2>
+    <p>Đăng nhập để tiếp tục mua sắm</p>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input class="form-input" type="email" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Mật khẩu</label>
+      <input class="form-input" type="password" placeholder="••••••••">
+    </div>
+    <button class="login-btn">Đăng nhập</button>
+    <div class="login-divider">— hoặc —</div>
+    <div class="register-link">Chưa có tài khoản? <a href="#">Đăng ký ngay</a></div>
+  </div>
+</div>
+
+<script>
+// inject helper
+</script>
+</body>
+</html>
