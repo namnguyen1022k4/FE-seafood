@@ -120,7 +120,7 @@ export default function ProductForm({ product, onSaved, onCancel }) {
             {uploading && <p className="text-xs text-gray-400 mt-1">Uploading...</p>}
             {form.image_url && (
               <img
-                src={`http://localhost:8000${form.image_url}`}
+                src={form.image_url}
                 alt="preview"
                 className="mt-2 h-20 object-cover rounded"
               />

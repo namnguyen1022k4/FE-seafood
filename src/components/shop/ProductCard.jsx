@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden group">
       <Link to={`/product/${product.id}`} className="block relative">
         <img
-          src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/300x200'}
+          src={product.image_url || 'https://placehold.co/300x200'}
           alt={product.name}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />

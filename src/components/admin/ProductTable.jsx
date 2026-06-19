@@ -32,7 +32,7 @@ export default function ProductTable({ products, onEdit, onDeleted }) {
               <td className="px-4 py-3">{p.id}</td>
               <td className="px-4 py-3">
                 <img
-                  src={p.image_url ? `http://localhost:8000${p.image_url}` : 'https://placehold.co/40x40'}
+                  src={p.image_url || 'https://placehold.co/40x40'}
                   alt={p.name}
                   className="w-10 h-10 object-cover rounded"
                 />

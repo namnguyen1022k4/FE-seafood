@@ -21,7 +21,7 @@ export default function CartItem({ item }) {
   return (
     <div className="flex items-center gap-4 px-5 py-4 border-b border-sky-50 last:border-b-0">
       <img
-        src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/80x80'}
+        src={product.image_url || 'https://placehold.co/80x80'}
         alt={product.name}
         className="w-16 h-16 object-cover rounded-xl"
       />
