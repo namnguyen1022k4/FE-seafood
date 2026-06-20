@@ -10,3 +10,4 @@ export const uploadImage = (formData) =>
     _skipAuthRedirect: true,
   })
 export const getBestsellers = (limit = 8) => api.get('/products/bestsellers', { params: { limit } })
+export const fixImageUrls = () => api.post('/products/fix-image-urls')
