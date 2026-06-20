@@ -187,7 +187,7 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden">
       <Link to={`/product/${product.id}`} className="block relative">
         <img
-          src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/300x200'}
+          src={product.image_url ? `${product.image_url}` : 'https://placehold.co/300x200'}
           alt={product.name}
           className="w-full h-48 object-cover"
         />
@@ -707,7 +707,7 @@ export default function ProductDetailPage() {
     <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-8">
       <div className="flex flex-col md:flex-row gap-8">
         <img
-          src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/400x300'}
+          src={product.image_url ? `${product.image_url}` : 'https://placehold.co/400x300'}
           alt={product.name}
           className="w-full md:w-80 h-64 object-cover rounded-xl"
         />
@@ -875,7 +875,7 @@ export default function CartItem({ item }) {
   return (
     <div className="flex items-center gap-4 px-5 py-4 border-b border-sky-50 last:border-b-0">
       <img
-        src={product.image_url ? `http://localhost:8000${product.image_url}` : 'https://placehold.co/80x80'}
+        src={product.image_url ? `http://localhost:${product.image_url}` : 'https://placehold.co/80x80'}
         alt={product.name}
         className="w-16 h-16 object-cover rounded-xl"
       />
