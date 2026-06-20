@@ -86,7 +86,7 @@ export default function ProductDetailPage() {
       <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
         <div className="flex flex-col md:flex-row gap-8">
           <img
-            src={product.image_url || 'https://placehold.co/400x300'}
+            src={product.image_url || 'https://res.cloudinary.com/diblzcbla/image/upload/products/default.jpg'}
             alt={product.name}
             className="w-full md:w-80 h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-zoom-in"
           />
