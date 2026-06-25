@@ -27,6 +27,7 @@ export default function Navbar() {
           {user ? (
             <>
               <span className="text-sm text-sky-200">Hi, {user.username || user.email}</span>
+              <Link to="/profile" className="text-sm text-sky-200 hover:text-white transition-colors">Profile</Link>
               <Link to="/orders" className="text-sm text-sky-200 hover:text-white transition-colors">Orders</Link>
               {user.role === 'ADMIN' && (
                 <Link to="/admin" className="text-sm font-medium text-sky-200 hover:text-white transition-colors">Admin</Link>
