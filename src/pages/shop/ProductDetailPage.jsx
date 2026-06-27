@@ -3,6 +3,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { getProduct, getProducts } from '../../api/products'
 import { getCategories } from '../../api/categories'
+import { getSuppliers } from '../../api/suppliers'
+import { getUnits } from '../../api/units'
 import useAuthStore from '../../stores/authStore'
 import useCartStore from '../../stores/cartStore'
 import ProductCard from '../../components/shop/ProductCard'
@@ -11,6 +13,8 @@ export default function ProductDetailPage() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [category, setCategory] = useState(null)
+  const [supplier, setSupplier] = useState(null)
+  const [unit, setUnit] = useState(null)
   const [related, setRelated] = useState([])
   const [quantity, setQuantity] = useState(1)
   const [loading, setLoading] = useState(true)
@@ -21,11 +25,20 @@ export default function ProductDetailPage() {
   useEffect(() => {
     setLoading(true)
     setQuantity(1)
-    Promise.all([getProduct(id), getCategories()]).then(([pRes, cRes]) => {
+    Promise.all([
+      getProduct(id),
+      getCategories(),
+      getSuppliers().catch(() => []),
+      getUnits().catch(() => [])
+    ]).then(([pRes, cRes, sRes, uRes]) => {
       const p = pRes.data
       const cat = cRes.data.find((c) => c.id === p.category_id) || null
+      const sup = sRes?.find?.((s) => s.id === p.supplier_id) || null
+      const un = uRes?.find?.((u) => u.id === p.unit_id) || null
       setProduct(p)
       setCategory(cat)
+      setSupplier(sup)
+      setUnit(un)
       setLoading(false)
       if (cat) {
         getProducts({ category_id: cat.id, size: 5 }).then((r) => {
@@ -91,11 +104,23 @@ export default function ProductDetailPage() {
             className="w-full md:w-80 h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-zoom-in"
           />
           <div className="flex-1">
-            {category && (
-              <span className="inline-block text-xs bg-sky-100 text-sky-700 font-semibold px-3 py-1 rounded-full mb-3">
-                {category.name}
-              </span>
-            )}
+            <div className="flex flex-wrap gap-2 mb-3">
+              {category && (
+                <span className="inline-block text-xs bg-sky-100 text-sky-700 font-semibold px-3 py-1 rounded-full">
+                  Danh mục: {category.name}
+                </span>
+              )}
+              {supplier && (
+                <span className="inline-block text-xs bg-emerald-100 text-emerald-700 font-semibold px-3 py-1 rounded-full">
+                  Nhà cung cấp: {supplier.name}
+                </span>
+              )}
+              {unit && (
+                <span className="inline-block text-xs bg-amber-100 text-amber-700 font-semibold px-3 py-1 rounded-full">
+                  Đơn vị tính: {unit.name}
+                </span>
+              )}
+            </div>
             <h1 className="text-2xl font-extrabold text-sky-900 mb-2">{product.name}</h1>
             <div className="flex items-center gap-3 mb-3">
               <p className={`text-3xl font-extrabold ${product.sales_price ? 'text-rose-500' : 'text-sky-500'}`}>

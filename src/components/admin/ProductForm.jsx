@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { createProduct, updateProduct, uploadImage } from '../../api/products'
 import { getCategories } from '../../api/categories'
 import { getUnits } from '../../api/units'
+import { getSuppliers } from '../../api/suppliers'
 
 export default function ProductForm({ product, onSaved, onCancel }) {
   const [form, setForm] = useState({
@@ -13,11 +14,13 @@ export default function ProductForm({ product, onSaved, onCancel }) {
     stock: '',
     category_id: '',
     unit_id: '',
+    supplier_id: '',
     image_url: '',
   })
 
   const [categories, setCategories] = useState([])
   const [units, setUnits] = useState([])
+  const [suppliers, setSuppliers] = useState([])
   const [uploading, setUploading] = useState(false)
   const [saving, setSaving] = useState(false)
 
@@ -30,6 +33,9 @@ export default function ProductForm({ product, onSaved, onCancel }) {
         const unitData = await getUnits()
         setUnits(unitData)
 
+        const supplierData = await getSuppliers()
+        setSuppliers(supplierData.data || supplierData)
+
         if (product) {
           setForm({
             name: product.name || '',
@@ -39,6 +45,7 @@ export default function ProductForm({ product, onSaved, onCancel }) {
             stock: product.stock || '',
             category_id: product.category_id || '',
             unit_id: product.unit_id || '',
+            supplier_id: product.supplier_id || '',
             image_url: product.image_url || '',
           })
         }
@@ -223,6 +230,25 @@ export default function ProductForm({ product, onSaved, onCancel }) {
             {units.map((u) => (
               <option key={u.id} value={u.id}>
                 {u.name}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className="w-full border rounded px-3 py-2 text-sm"
+            value={form.supplier_id}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                supplier_id: e.target.value,
+              })
+            }
+          >
+            <option value="">Select supplier</option>
+
+            {suppliers.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.name}
               </option>
             ))}
           </select>
