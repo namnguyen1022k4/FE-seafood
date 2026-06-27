@@ -32,7 +32,7 @@ export default function ProductTable({ products, onEdit, onDeleted }) {
               <td className="px-4 py-3">{p.id}</td>
               <td className="px-4 py-3">
                 <img
-                  src={p.image_url || 'https://res.cloudinary.com/diblzcbla/image/upload/products/default.jpg'}
+                  src={p.image_url || 'https://placehold.co/100x100?text=No+Image'}
                   alt={p.name}
                   className="w-10 h-10 object-cover rounded"
                 />

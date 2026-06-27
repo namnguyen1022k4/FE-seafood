@@ -86,7 +86,7 @@ export default function ProductDetailPage() {
       <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
         <div className="flex flex-col md:flex-row gap-8">
           <img
-            src={product.image_url || 'https://res.cloudinary.com/diblzcbla/image/upload/products/default.jpg'}
+            src={product.image_url || 'https://placehold.co/600x400?text=No+Image'}
             alt={product.name}
             className="w-full md:w-80 h-64 object-cover rounded-xl hover:scale-105 transition-transform duration-300 cursor-zoom-in"
           />
@@ -97,7 +97,16 @@ export default function ProductDetailPage() {
               </span>
             )}
             <h1 className="text-2xl font-extrabold text-sky-900 mb-2">{product.name}</h1>
-            <p className="text-3xl font-extrabold text-sky-500 mb-3">${product.price.toFixed(2)}</p>
+            <div className="flex items-center gap-3 mb-3">
+              <p className={`text-3xl font-extrabold ${product.sales_price ? 'text-rose-500' : 'text-sky-500'}`}>
+                ${(product.sales_price || product.price).toFixed(2)}
+              </p>
+              {product.sales_price && (
+                <p className="text-lg font-bold text-slate-400 line-through">
+                  ${product.price.toFixed(2)}
+                </p>
+              )}
+            </div>
             <p className="text-slate-600 leading-relaxed mb-3">{product.description}</p>
             <p className={`text-sm font-medium mb-4 ${product.stock > 0 ? (isLowStock ? 'text-amber-600' : 'text-emerald-600') : 'text-red-500'}`}>
               {product.stock === 0

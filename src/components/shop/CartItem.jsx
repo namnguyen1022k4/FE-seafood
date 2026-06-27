@@ -21,13 +21,13 @@ export default function CartItem({ item }) {
   return (
     <div className="flex items-center gap-4 px-5 py-4 border-b border-sky-50 last:border-b-0">
       <img
-        src={product.image_url}
+        src={product.image_url || 'https://placehold.co/100x100?text=No+Image'}
         alt={product.name}
         className="w-16 h-16 object-cover rounded-xl"
       />
       <div className="flex-1 min-w-0">
         <p className="font-semibold text-slate-800 truncate">{product.name}</p>
-        <p className="text-sky-500 font-bold text-sm">${product.price.toFixed(2)}</p>
+        <p className="text-sky-500 font-bold text-sm">${(product.sales_price || product.price).toFixed(2)}</p>
       </div>
       <div className="flex items-center gap-1">
         <button
@@ -41,7 +41,7 @@ export default function CartItem({ item }) {
         >+</button>
       </div>
       <p className="w-20 text-right font-bold text-sky-900">
-        ${(product.price * item.quantity).toFixed(2)}
+        ${((product.sales_price || product.price) * item.quantity).toFixed(2)}
       </p>
       <button
         onClick={() => handleQtyChange(0)}

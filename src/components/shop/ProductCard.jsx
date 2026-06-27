@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-200 overflow-hidden group">
       <Link to={`/product/${product.id}`} className="block relative">
         <img
-          src={product.image_url || 'https://res.cloudinary.com/diblzcbla/image/upload/products/default.jpg'}
+          src={product.image_url || 'https://placehold.co/600x400?text=No+Image'}
           alt={product.name}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
         />
@@ -55,7 +55,16 @@ export default function ProductCard({ product }) {
           <h3 className="font-semibold text-slate-900 hover:text-sky-600 truncate transition-colors">{product.name}</h3>
         </Link>
         <div className="flex items-center justify-between mt-3">
-          <p className="text-lg font-extrabold text-sky-900">${product.price.toFixed(2)}</p>
+          <div className="flex flex-col">
+            <p className={`text-lg font-extrabold ${product.sales_price ? 'text-rose-500' : 'text-sky-900'}`}>
+              ${(product.sales_price || product.price).toFixed(2)}
+            </p>
+            {product.sales_price && (
+              <p className="text-xs font-bold text-slate-400 line-through">
+                ${product.price.toFixed(2)}
+              </p>
+            )}
+          </div>
           <button
             onClick={handleAddToCart}
             disabled={isOutOfStock}
