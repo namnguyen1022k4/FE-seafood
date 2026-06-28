@@ -1,11 +1,17 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://shift-hundreds-adsl-belle.trycloudflare.com',
+  baseURL: 'https://mysimon-cycling-bath-impressive.trycloudflare.com',
   withCredentials: true,
 })
 
-api.interceptors.request.use((config) => config)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('access_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
 
 api.interceptors.response.use(
   (response) => response,

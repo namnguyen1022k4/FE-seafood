@@ -3,31 +3,25 @@ import { logout as apiLogout, getMe } from '../api/auth'
 
 const useAuthStore = create((set) => ({
   user: null,
+  token: localStorage.getItem('access_token'),
 
   login(userData) {
     if (userData.access_token) {
-      document.cookie = `access_token=${userData.access_token}; path=/; max-age=86400; SameSite=Lax`
+      localStorage.setItem('access_token', userData.access_token)
+      set({ user: userData, token: userData.access_token })
+    } else {
+      set({ user: userData })
     }
-    set({ user: userData })
   },
 
-  async logout() {
-    try {
-      await apiLogout()
-    } finally {
-      document.cookie = 'access_token=; path=/; max-age=0'
-      set({ user: null })
-    }
+  logout() {
+    localStorage.removeItem('access_token')
+    set({ user: null, token: null })
   },
 
   async restoreSession() {
-    try {
-      const res = await getMe()
-      set({ user: res.data })
-    } catch {
-      document.cookie = 'access_token=; path=/; max-age=0'
-      set({ user: null })
-    }
+    // Implement logic to restore session using the stored token if needed, 
+    // or just clear if token is invalid.
   },
 }))
 
