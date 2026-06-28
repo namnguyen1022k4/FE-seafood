@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://mysimon-cycling-bath-impressive.trycloudflare.com',
+  baseURL: 'https://remain-determination-mpg-feelings.trycloudflare.com',
   withCredentials: true,
 })
 

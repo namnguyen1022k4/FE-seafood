@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getProducts, fixImageUrls } from '../../api/products'
+import { getProducts } from '../../api/products'
 import ProductTable from '../../components/admin/ProductTable'
 import ProductForm from '../../components/admin/ProductForm'
 import toast from 'react-hot-toast'
@@ -28,27 +28,11 @@ export default function AdminProductsPage() {
 
   const totalPages = Math.ceil(total / 10)
 
-  const handleFixImageUrls = async () => {
-    try {
-      const res = await fixImageUrls()
-      toast.success(`Fixed ${res.data.fixed} product(s)`)
-      load()
-    } catch {
-      toast.error('Fix failed')
-    }
-  }
-
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Products</h1>
         <div className="flex gap-2">
-          <button
-            onClick={handleFixImageUrls}
-            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 text-sm"
-          >
-            Fix Image URLs
-          </button>
           <button
             onClick={() => { setEditingProduct(undefined); setShowForm(true) }}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm"

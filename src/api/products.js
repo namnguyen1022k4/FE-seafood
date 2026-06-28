@@ -16,4 +16,3 @@ export const uploadImage = (formData) => {
 }
 
 export const getBestsellers = (limit = 8) => api.get('/products/bestsellers', { params: { limit } })
-export const fixImageUrls = () => api.post('/products/fix-image-urls')
